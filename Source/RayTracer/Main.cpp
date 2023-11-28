@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Random.h"
 #include <iostream>
 #include <SDL.h>
 
@@ -7,6 +8,7 @@ using namespace std;
 int main(int, char**)
 {
 	std::cout << "hello world!\n";
+	seedRandom((uint32_t)time(nullptr));
 
 		//<create renderer>
 	Renderer renderer;
