@@ -15,5 +15,5 @@ inline float random01()
 inline float random(float min, float max)
 {
 	if (min > max) std::swap(min, max);
-	return min + (rand() % const(max - min));
+	return min + ((max - min) * random01());
 }

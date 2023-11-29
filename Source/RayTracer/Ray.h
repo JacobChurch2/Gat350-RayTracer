@@ -10,7 +10,7 @@ struct ray_t
 	{}
 
 	glm::vec3 GetPoint(float distance) const { return origin + (direction * distance); }
-	glm::vec3 operator *(float distance) const { return origin + (direction * distance); }
+	glm::vec3 operator *(float distance) const { return GetPoint(distance); }
 
 	glm::vec3 origin{ 0 };
 	glm::vec3 direction{ 0 };
