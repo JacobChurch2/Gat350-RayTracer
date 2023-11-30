@@ -3,6 +3,9 @@
 #include "Canvas.h"
 #include "Camera.h"
 #include "Scene.h"
+#include "Materials.h"
+#include "Sphere.h"
+#include <memory>
 #include <iostream>
 #include <SDL.h>
 
@@ -26,6 +29,15 @@ int main(int, char**)
 
 	Scene scene; // sky color could be set with the top and bottom color
 	scene.SetCamera(camera);
+
+	// create material
+	auto material = std::make_shared<Lambertian>(color3_t{ 0, 0, 1 });
+
+	for (int i = 0; i < 10; i++) {
+		// create objects -> add to scene
+		auto sphere = std::make_unique<Sphere>(glm::vec3{ random(5,-5), random(5,-5), random(-5, -20)}, random(0.5f, 2), material);
+		scene.AddObject(std::move(sphere));
+	}
 
 	bool quit = false;
 	while (!quit)
