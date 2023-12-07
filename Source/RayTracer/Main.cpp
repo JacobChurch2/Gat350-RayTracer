@@ -23,7 +23,7 @@ int main(int, char**)
 {
 	const int width = 400;
 	const int height = 300;
-	const int samples = 500;
+	const int samples = 200;
 	const int depth = 8;
 
 	seedRandom((uint32_t)time(nullptr));
@@ -56,16 +56,6 @@ int main(int, char**)
 			quit = true;
 			break;
 		}
-
-		/*canvas.Clear({ 0, 0, 0, 1 });
-		for (int i = 0; i < 1000; i++) canvas.DrawPoint({random01() * canvas.GetSize().x, random01() * canvas.GetSize().y}, {random01(), random01(), random01(), 1});
-		canvas.Update();*/
-
-		//renderer.PresentCanvas(canvas);
-
-		/*canvas.Clear({ 0, 0, 0, 1 });
-		scene.Render(canvas);
-		canvas.Update();*/
 
 		renderer.PresentCanvas(canvas);
 	}
@@ -133,26 +123,6 @@ void CornellBox(Scene& scene, const Canvas& canvas) {
 	float aspectRatio = canvas.GetSize().x / canvas.GetSize().y;
 	std::shared_ptr<Camera> camera = std::make_shared<Camera>(glm::vec3{ 0, 0, 3 }, glm::vec3{ 0, 0, 0 }, glm::vec3{ 0, 1, 0 }, 100.0f, aspectRatio);
 	scene.SetCamera(camera);
-
-	/*auto left = std::make_unique<Mesh>(std::make_shared<Lambertian>(color3_t{ 1, 0, 0 }));
-	left->Load("models/quad.obj", glm::vec3{ -2, 0, 0 }, glm::vec3{ 0, 90, 0 }, glm::vec3{4});
-	scene.AddObject(std::move(left));
-
-	auto right = std::make_unique<Mesh>(std::make_shared<Lambertian>(color3_t{ 0, 1, 0 }));
-	right->Load("models/quad.obj", glm::vec3{ 2, 0, 0 }, glm::vec3{ 0, -90, 0 }, glm::vec3{ 4 });
-	scene.AddObject(std::move(right));
-
-	auto floor = std::make_unique<Mesh>(std::make_shared<Lambertian>(color3_t{ 1}));
-	floor->Load("models/quad.obj", glm::vec3{ 0, -2, 0 }, glm::vec3{ -90, 0, 0 }, glm::vec3{ 4 });
-	scene.AddObject(std::move(floor));
-
-	auto ceiling = std::make_unique<Mesh>(std::make_shared<Lambertian>(color3_t{ 1 }));
-	ceiling->Load("models/quad.obj", glm::vec3{ 0, 2, 0 }, glm::vec3{ 90, 0, 0 }, glm::vec3{ 4 });
-	scene.AddObject(std::move(ceiling));
-
-	auto back = std::make_unique<Mesh>(std::make_shared<Lambertian>(color3_t{ 1 }));
-	back->Load("models/quad.obj", glm::vec3{ 0 , 0, -2 }, glm::vec3{ 0, 0, 0 }, glm::vec3{ 4 });
-	scene.AddObject(std::move(back));*/
 
 	auto left = std::make_unique<Plane>(glm::vec3{ -2, 0, 0 }, glm::vec3{ 1, 0, 0 }, std::make_shared<Lambertian>(color3_t{ 1,0,0 }));
 	scene.AddObject(std::move(left));
